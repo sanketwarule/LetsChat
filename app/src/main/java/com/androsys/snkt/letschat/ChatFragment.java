@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +50,6 @@ public class ChatFragment extends Fragment {
         recyclerViewChat.setLayoutManager(layoutManager);
         recyclerViewChat.setItemAnimator(new DefaultItemAnimator());
 
-
         ChatMessage msgDto = new ChatMessage(ChatMessage.MSG_TYPE_RECEIVED, "hello" , false);
         msgList.add(msgDto);
 
@@ -61,4 +62,5 @@ public class ChatFragment extends Fragment {
 
 
     }
+
 }
