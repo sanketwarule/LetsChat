@@ -1,8 +1,6 @@
-package com.androsys.snkt.letschat.model;
+package com.androsys.snkt.letschat.chatlist;
 
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.os.Parcelable;
 
 import java.io.Serializable;
 

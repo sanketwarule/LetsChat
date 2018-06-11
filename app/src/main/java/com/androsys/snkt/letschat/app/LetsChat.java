@@ -1,7 +1,6 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.app;
 
 import android.app.Application;
-import android.widget.Spinner;
 
 import java.net.URISyntaxException;
 
@@ -15,7 +14,9 @@ public class LetsChat extends Application {
     public static Socket getSocket() throws URISyntaxException {
 
         if (socket == null){
-            socket = IO.socket("http://192.168.43.218:4000");
+            socket = IO.socket("http://192.168.0.103:3000");
+            return socket;
+        } else if (socket != null) {
             return socket;
         }
         return null;
@@ -24,18 +25,11 @@ public class LetsChat extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        try {
-            getSocket().connect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
     }
-
-
 
     @Override
     public void onTerminate() {
         super.onTerminate();
+
     }
 }

@@ -1,4 +1,4 @@
-package com.androsys.snkt.letschat.model;
+package com.androsys.snkt.letschat.chat;
 
 public class ChatMessage {
     public final static String MSG_TYPE_SENT = "MSG_TYPE_SENT";

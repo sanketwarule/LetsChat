@@ -1,9 +1,12 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.app;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.androsys.snkt.letschat.chatlist.ChatListFragment;
+import com.androsys.snkt.letschat.contactlist.ContactFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.app;
 
 
 import android.os.Bundle;
@@ -6,6 +6,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.androsys.snkt.letschat.R;
+import com.androsys.snkt.letschat.chatlist.ChatListFragment;
+import com.androsys.snkt.letschat.contactlist.ContactFragment;
+
+import java.net.URISyntaxException;
+
+import io.socket.client.Socket;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,19 +38,30 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         pageTitle = getResources().getStringArray(R.array.title);
 
 
-
-
         TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
-        tabPagerAdapter.addFragment(new ChatListFragment() , pageTitle[0]);
-        tabPagerAdapter.addFragment(new ContactFragment() , pageTitle[1]);
+        tabPagerAdapter.addFragment(new ChatListFragment(), pageTitle[0]);
+        tabPagerAdapter.addFragment(new ContactFragment(), pageTitle[1]);
         viewPager.setAdapter(tabPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            Socket socket = LetsChat.getSocket();
+            if (socket != null) {
+                socket.disconnect();
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.app;
 
 import android.view.View;
 

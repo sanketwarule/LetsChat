@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/avtarchatlistlist"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:src="@mipmap/ic_launcher_round"
         app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/type_message_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/shubhnaamChatListTv"
-        android:layout_width="191dp"
-        android:layout_height="39dp"
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:paddingTop="7dp"
         android:text="TextView"
@@ -35,17 +37,17 @@
 
     <TextView
         android:id="@+id/timestampChatListTv"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:gravity="end|center_vertical"
         android:text="TextView"
-        android:textSize="14sp"
-        android:gravity="end"
         android:textAlignment="textEnd"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/shubhnaamChatListTv"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,12 +55,14 @@
     <TextView
         android:id="@+id/messageContentChatListTv"
         android:layout_width="193dp"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="3dp"
         android:paddingLeft="5dp"
         android:text="TextView"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/avtarchatlistlist"
         app:layout_constraintTop_toBottomOf="@+id/shubhnaamChatListTv" />

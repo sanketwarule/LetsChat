@@ -1,16 +1,12 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.chat;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.androsys.snkt.letschat.model.ChatMessage;
+import com.androsys.snkt.letschat.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +28,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageViewHold
     public void onBindViewHolder(@NonNull ChatMessageViewHolder holder, int position) {
         ChatMessage msgDto = this.msgTextList.get(position);
         // If the message is a received message.
-        if(msgDto.MSG_TYPE_RECEIVED.equals(msgDto.getMsgType()))
+        if (ChatMessage.MSG_TYPE_RECEIVED.equals(msgDto.getMsgType()))
         {
             // Show received message in left linearlayout.
             holder.leftMsgLayout.setVisibility(LinearLayout.VISIBLE);
@@ -42,7 +38,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageViewHold
             holder.rightMsgLayout.setVisibility(LinearLayout.GONE);
         }
         // If the message is a sent message.
-        else if(msgDto.MSG_TYPE_SENT.equals(msgDto.getMsgType()))
+        else if (ChatMessage.MSG_TYPE_SENT.equals(msgDto.getMsgType()))
         {
             // Show sent message in right linearlayout.
             holder.rightMsgLayout.setVisibility(LinearLayout.VISIBLE);

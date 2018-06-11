@@ -1,18 +1,18 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.chatlist;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.androsys.snkt.letschat.model.Chat;
+import com.androsys.snkt.letschat.R;
+import com.androsys.snkt.letschat.app.OnItemClickListener;
 
 import java.util.List;
 
-public class CustomAdapterRecycler extends RecyclerView.Adapter<CustomAdapterRecycler.MyViewHolder> {
+public class CustomAdapterRecycler extends RecyclerView.Adapter<ChatListViewHolder> {
+
+
 
     private List<Chat> chatList;
     private OnItemClickListener listener;
@@ -23,15 +23,16 @@ public class CustomAdapterRecycler extends RecyclerView.Adapter<CustomAdapterRec
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item_row , parent , false));
+    public ChatListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ChatListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item_row, parent, false));
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ChatListViewHolder holder, int position) {
         Chat chat = chatList.get(position);
+
+        holder.listener = listener;         // for binding the listener from chatlistview holder to adapter
 
         if (chat.getAvtar() != null){
             holder.avtaar.setImageBitmap(chat.getAvtar());
@@ -56,7 +57,7 @@ public class CustomAdapterRecycler extends RecyclerView.Adapter<CustomAdapterRec
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+   /* public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView shubhNaam , timeStamp , msgContent , unReadMsgCount;
         public ImageView avtaar;
@@ -79,6 +80,6 @@ public class CustomAdapterRecycler extends RecyclerView.Adapter<CustomAdapterRec
             listener.onItemClick(v , getAdapterPosition());
         }
     }
-
+*/
 
 }

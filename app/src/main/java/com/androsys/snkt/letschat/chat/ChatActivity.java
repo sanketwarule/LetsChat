@@ -1,16 +1,17 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.chat;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.androsys.snkt.letschat.model.Chat;
+import com.androsys.snkt.letschat.R;
+import com.androsys.snkt.letschat.chatlist.Chat;
+import com.androsys.snkt.letschat.contactlist.Contact;
 
 public class ChatActivity extends AppCompatActivity {
 
     private String TAG = getClass().getSimpleName();
-    private Chat chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,16 @@ public class ChatActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         fragmentTransaction.commit();
         if (extras != null) {
-            chat = (Chat) extras.getSerializable("chat");
-            Log.d(TAG, "chat " + chat.getShubhNaam());
+            if (extras.containsKey("chat")) {
+
+                Chat chat = (Chat) extras.getSerializable("chat");
+                Log.d(TAG, "chat " + chat.getShubhNaam());
+            } else if (extras.containsKey("contact")) {
+
+                Contact contact = (Contact) extras.getSerializable("contact");
+                Log.d(TAG, "contact " + contact.getShubhnaam());
+            }
+
         }
     }
 }

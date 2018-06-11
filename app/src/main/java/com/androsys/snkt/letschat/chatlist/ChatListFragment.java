@@ -1,4 +1,4 @@
-package com.androsys.snkt.letschat;
+package com.androsys.snkt.letschat.chatlist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.androsys.snkt.letschat.model.Chat;
+import com.androsys.snkt.letschat.R;
+import com.androsys.snkt.letschat.app.CustomRecylerViewAdapter;
+import com.androsys.snkt.letschat.app.OnItemClickListener;
+import com.androsys.snkt.letschat.chat.ChatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +27,10 @@ public class ChatListFragment extends Fragment implements OnItemClickListener {
 
     private View view;
     private RecyclerView recyclerView;
-    private List<Chat> chatList = new ArrayList();
-    private CustomAdapterRecycler adapterRecycler;
+    private List<Object> chatList = new ArrayList();
+//    private CustomAdapterRecycler adapterRecycler;
 
+    private CustomRecylerViewAdapter adapterRecycler;
 
     @Nullable
     @Override
@@ -42,7 +46,9 @@ public class ChatListFragment extends Fragment implements OnItemClickListener {
 
     private void initialization(View view) {
         recyclerView = view.findViewById(R.id.recyclerviewchatlist);
-        adapterRecycler = new CustomAdapterRecycler(chatList);
+//        adapterRecycler = new CustomAdapterRecycler(chatList);
+
+        adapterRecycler = new CustomRecylerViewAdapter(chatList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -88,7 +94,7 @@ public class ChatListFragment extends Fragment implements OnItemClickListener {
     @Override
     public void onItemClick(View view, int position) {
         Log.d("chatfrag "," view : "+view.getId()+" position : "+position);
-        Chat chat = chatList.get(position);
+        Chat chat = (Chat) chatList.get(position);
         Toast.makeText(getActivity() , chat.getShubhNaam() , Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getActivity(), ChatActivity.class);
