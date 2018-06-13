@@ -9,11 +9,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.androsys.snkt.letschat.R;
 import com.androsys.snkt.letschat.app.CustomRecylerViewAdapter;
@@ -93,9 +91,9 @@ public class ChatListFragment extends Fragment implements OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        Log.d("chatfrag "," view : "+view.getId()+" position : "+position);
+//        Log.d("chatfrag "," view : "+view.getId()+" position : "+position);
         Chat chat = (Chat) chatList.get(position);
-        Toast.makeText(getActivity() , chat.getShubhNaam() , Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity() , chat.getShubhNaam() , Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra("chat", chat);

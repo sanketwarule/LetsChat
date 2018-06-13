@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.androsys.snkt.letschat.R;
 import com.androsys.snkt.letschat.chatlist.ChatListFragment;
@@ -13,10 +15,9 @@ import com.androsys.snkt.letschat.contactlist.ContactFragment;
 
 import java.net.URISyntaxException;
 
-import io.socket.client.Socket;
-
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private String TAG = getClass().getSimpleName();
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String[] pageTitle;
@@ -26,9 +27,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_modified);
-
         initialization();
-
     }
 
     private void initialization() {
@@ -43,6 +42,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         tabPagerAdapter.addFragment(new ContactFragment(), pageTitle[1]);
         viewPager.setAdapter(tabPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        try {
+            LetsChat.getSocket().connect();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -52,16 +57,23 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
     @Override
-    protected void onPause() {
-        super.onPause();
-        try {
-            Socket socket = LetsChat.getSocket();
-            if (socket != null) {
-                socket.disconnect();
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+    protected void onStart() {
+        super.onStart();
+
+        Log.d(TAG, " onStart");
+
+        if (LetsChat.wasInBackground) {
+            Toast.makeText(getApplicationContext(), "Application came to foreground", Toast.LENGTH_SHORT).show();
+            LetsChat.wasInBackground = false;
+
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        LetsChat.disconnectSocket();
     }
 }
